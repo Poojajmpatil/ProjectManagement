@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.cts.exception.UserNotFoundException;
 import com.cts.model.User;
 import com.cts.repository.UserRepository;
 
@@ -23,13 +23,22 @@ public class UserService {
 	public void saveUser(User user) {
 		userRepository.save(user);
 	}
-	public boolean updateUser(User user) {
+	
+	
+	
+	public boolean updateUser(Long id,User user) throws UserNotFoundException {
+
+		userRepository.findById(id)
+		.orElseThrow(() -> new UserNotFoundException());
+			
+			
 		return userRepository.save(user) != null;
 	}
-		
-	public Optional<User> getUserById(Long id) {
-		
-		return userRepository.findById(id);
+	
+	public User getUserById(Long id) {
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new UserNotFoundException());
+		return user;
 	}
 	
 }
