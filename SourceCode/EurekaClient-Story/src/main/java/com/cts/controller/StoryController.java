@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.feign.StoryFeignClient;
@@ -42,8 +43,7 @@ public class StoryController {
 	
 	@GetMapping("/user/{id}")
 	public User getUserById(@PathVariable Long id) {
-		User user1 = storyFeignClient.getUserById(id) ;
-			//Long r= user1.getRole_id();	
+		User user1 = storyFeignClient.getUserById(id) ;	
 			return user1;
 		
 	}
@@ -52,8 +52,8 @@ public class StoryController {
 	
 	@PostMapping("/insertstory/{id}")
 	public String addStory(@PathVariable Long id ,@RequestBody Story story) {
-		String result = iStoryService.addStory(id,story);
-		return result;	
+		return iStoryService.addStory(id,story);
+			
 		
 	}
 	
@@ -62,30 +62,28 @@ public class StoryController {
 		return iStoryService.getAllStory();
 	}
 	
-	@PostMapping("/story")
-	public void saveStory(@RequestBody Story story) {
-		iStoryService.saveStory(story);
-	}
-	
 
 	@PutMapping(value = "/story/{id}")
-	public HttpStatus updateStory(@PathVariable Long id,@RequestBody Story story) {
-		
-		return iStoryService.updateStory(id,story)  ? HttpStatus.ACCEPTED : HttpStatus.BAD_REQUEST;
+	public String updateStory(@PathVariable Long id,@RequestBody Story story,@RequestParam Long updateid) {
+		return iStoryService.updateStory(id,story,updateid);
 	}
 	
 	
 	@RequestMapping(value = "/story/{id}", method = RequestMethod.DELETE)
-	public HttpStatus deleteStory(@PathVariable Long id) {
-		iStoryService.deleteStory(id);
-		return HttpStatus.NO_CONTENT;
+	public String deleteStory(@PathVariable Long id,@RequestParam Long deleteid) {
+		return iStoryService.deleteStory(id,deleteid);
+		
 	}
 
 	@GetMapping("/story/{id}")
-	public Optional<Story> getById(@PathVariable Long id) {
-	    return iStoryService.getById(id) ;
+	public Optional<Story> getStoryById(@PathVariable Long id) {
+	    return iStoryService.getStoryById(id) ;
 	}
 	
+//	@PostMapping("/story")
+//	public void saveStory(@RequestBody Story story) {
+//		iStoryService.saveStory(story);
+//	}
 	
 	
 }
