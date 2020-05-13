@@ -12,5 +12,9 @@ public interface IStoryService {
 	public Story getStoryById(Long id);
 	public String addStory(Long id, Story story);
 	public List<Story> getStoryByUserId(Long userid);
+	public static List<Story> listAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

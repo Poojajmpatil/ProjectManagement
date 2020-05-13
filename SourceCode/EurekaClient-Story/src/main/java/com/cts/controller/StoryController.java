@@ -1,6 +1,9 @@
 package com.cts.controller;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,9 @@ import com.cts.service.IStoryService;
 
 @RestController
 public class StoryController {
+	
+	Logger log = LoggerFactory.getLogger(StoryController.class);
+
 	
 	@Autowired
 	IStoryService iStoryService;
@@ -45,8 +51,15 @@ public class StoryController {
 //.......................................................................
 	
 	@PostMapping("/insertstory/{id}")
-	public String addStory(@PathVariable Long id ,@RequestBody Story story) {
-		return iStoryService.addStory(id,story);
+	public List<Story> addStory(@PathVariable Long id ,@RequestBody Story story) {
+		log.info("story list is going to display");
+		List<Story>listStories=IStoryService.listAll();
+		log.info("story list displayed");
+		log.debug("missing story");
+		return listStories;
+
+		
+		//return iStoryService.addStory(id,story);
 			
 		
 	}
