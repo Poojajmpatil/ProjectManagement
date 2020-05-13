@@ -1,10 +1,7 @@
 package com.cts.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.feign.StoryFeignClient;
 import com.cts.model.Story;
 import com.cts.model.User;
-import com.cts.service.DemoFeignService;
 import com.cts.service.IStoryService;
 
 @RestController
@@ -32,8 +28,6 @@ public class StoryController {
 	@Autowired
 	StoryFeignClient storyFeignClient;
 	
-	@Autowired
-	DemoFeignService demoFeignService;
 	
 	@RequestMapping("/users")
 	 public List<User> getAllUser()
@@ -75,10 +69,17 @@ public class StoryController {
 		
 	}
 
+	@GetMapping("/assignedstory")
+	public List<Story> getStoryByUserId(@RequestParam Long userid) {
+	    return iStoryService.getStoryByUserId(userid) ;
+	}
+	
 	@GetMapping("/story/{id}")
-	public Optional<Story> getStoryById(@PathVariable Long id) {
+	public Story getStoryById(@PathVariable Long id) {
 	    return iStoryService.getStoryById(id) ;
 	}
+	
+	
 	
 //	@PostMapping("/story")
 //	public void saveStory(@RequestBody Story story) {

@@ -80,22 +80,6 @@
 			</exclusions>
 		</dependency>
 		
-		
-<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign 
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-openfeign</artifactId>
-    <version>1.4.7.RELEASE</version>
-</dependency>
-
--->
-<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson 
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.5</version>
-</dependency>
--->
 
 		<dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -109,17 +93,7 @@
 	</dependencies>
 
 	<dependencyManagement>
-		<dependencies>
-		
-		<!-- <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-parent</artifactId>
-                <version>Greenwich.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency> -->
-            
-<!-- .............................testadded............................. -->   
+		<dependencies>  
 
          
 			<dependency>
@@ -129,15 +103,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
-	<!--	</dependencies>
-	  </dependencyManagement>
-	
-	<dependencyManagement>
-	
-        <dependencies>
-        
-        -->
             
          </dependencies>
     </dependencyManagement>
