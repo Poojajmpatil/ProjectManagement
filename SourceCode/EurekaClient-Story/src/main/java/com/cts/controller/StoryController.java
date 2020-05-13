@@ -18,6 +18,7 @@ import com.cts.model.User;
 import com.cts.service.IStoryService;
 
 @RestController
+@RequestMapping("/access")
 public class StoryController {
 	
 	@Autowired
