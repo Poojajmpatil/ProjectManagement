@@ -1,6 +1,8 @@
 package com.cts.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.cts.model.Story;
 
 public interface IStoryService {
@@ -9,12 +11,8 @@ public interface IStoryService {
 	//public void saveStory(Story story);
 	public String updateStory(Long id,Story story,Long updateid);
 	public String deleteStory(Long id,Long deleteid);
-	public Story getStoryById(Long id);
+	public Optional<Story> getStoryById(Long id);
 	public String addStory(Long id, Story story);
-	public List<Story> getStoryByUserId(Long userid);
-	public static List<Story> listAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
