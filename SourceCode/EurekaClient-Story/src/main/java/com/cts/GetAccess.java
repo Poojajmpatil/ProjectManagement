@@ -16,8 +16,8 @@ public class GetAccess {
 	public Boolean getRoleAccess(Long id)
 	{
 		User user1 = storyFeignClient.getUserById(id) ;
-		Long role= user1.getRole_id();	
-		if(role == 0)
+		Long r= user1.getRole_id();	
+		if(r == 0)
 			return true;
 		else
 		{	 throw new AccessControlException();
